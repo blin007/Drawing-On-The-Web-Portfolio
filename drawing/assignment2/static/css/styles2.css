@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+html,
+body {
+    font-family: 'Oswald', sans-serif;
+}
+
+html {
+    background: url("../assets/cat-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    transition: 0.3s;
+}
+
+/* Variables */
+:root {
+    /* Fonts */
+    --font-size-s: 1vw;
+    --font-size-m: 3vw;
+    --font-size-l: 5vw;
+    --font-bold: 700;
+
+    /* Colors */
+    --color-text-stroke: #000000;
+    --color-text-1: #000000;
+    --color-text-2: #cacaca;
+    --color-card-bg: #ffffff;
+}
+
+.main-container {
+    height: 100vh;
+    width: 100%;
+}
+
+h1 {
+    font-weight: var(--font-bold);
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+    padding: 1.5em 2.5em;
+}
+
+.header-icon {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    fill: #000000;
+}
+
+#icon-home:hover {
+    cursor: pointer;
+}
+
+.light-dark-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+/* 
+Toggle switch from
+https: //www.w3schools.com/howto/howto_css_switch.asp
+*/
+.switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    transition: 0.4s;
+    border-radius: 32px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ffffff;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #ffffff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+    background-color: #000000;
+}
+
+/* Hero styles */
+.hero-icon {
+    width: 10em;
+    height: 10em;
+    fill: #000000;
+}
+
+.icon-learn {
+    transform: scaleX(-1);
+    width: 120px;
+    height: 120px;
+}
+
+/* Hero */
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.grid-wrapper {
+    border: 3px solid var(--color-text-stroke);
+    border-radius: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 3em;
+    gap: 1em;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border: 3px solid var(--color-text-stroke);
+    border-radius: 16px;
+    white-space: initial;
+    background-color: var(--color-card-bg);
+    color: var(--color-text-1);
+}
+
+.hero-text {
+    color: var(--color-text-1);
+    font-size: var(--font-size-m);
+    line-height: 2em;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+}

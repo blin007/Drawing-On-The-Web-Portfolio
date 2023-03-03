@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Door to Another World</title>
+</head>
+<body>
+    <div id="scene">
+      <!-- The step is constructed of 1 shape -->
+      <div class="box step" id="step">
+        <div></div>
+      </div>
+      <div class="door">
+        <!-- The main door is constructed from 3 shapes (main door, door handle, door knob)  -->
+        <div class="box main-door" id="door-frame">
+          <div>
+              <div class="door-handle">
+                <div class="door-lock"></div>
+                <div class="box door-knob">
+                  <div>
+                    <div class="box door-knob-handle" id="door-handle"><div></div></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!-- The door frame itself is constructed of 3 shapes -->
+        <div class="box door-frame door-top">
+          <div></div>
+        </div>
+        <div class="box door-frame left-side">
+          <div></div>
+        </div>
+        <div class="box door-frame right-side">
+          <div></div>
+        </div>
+        <img src="assets/images/scenery.jpg" alt="scenery" id="scenery"/>
+      </div>
+    </div>
+    <script defer type="module" src="assets/js/script.js"></script>
+</body>
+</html>

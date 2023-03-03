@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(32, 3, 45, 1) 0%, rgba(151, 55, 193, 1) 35%, rgba(177, 47, 88, 1) 57%, rgba(29, 38, 233, 1) 100%);
+    perspective: 1200px;
+    background-size: 400% 400%;
+    background-position: 100% 0%;
+}
+
+/* Use vmin for responsiveness */
+#scene {
+    width: 70vmin;
+    height: 70vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    transform-style: preserve-3d;
+}
+
+#scene div {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* 
+
+BASIC BOX FOUNDATION
+
+*/
+.box {
+    width: 20vmin;
+    height: 10vmin;
+    background: var(--front-back-color);
+    transform-style: preserve-3d;
+}
+
+.box:before,
+.box:after {
+    content:"";
+    width: var(--zdepth);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--side-color);
+    transform: rotateY(-90deg);
+    transform-origin: 0 100%;
+}
+
+.box:after {
+    left: auto;
+    right: 0;
+    transform-origin: 100% 0%;
+    transform: rotateY(90deg);
+}
+
+.box > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--front-back-color);
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0,0,var(--zdepth));
+    transform-style: preserve-3d;
+}
+
+.box > div:before,
+.box>div:after {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--top-bot-color);
+    width: 100%;
+    height: var(--zdepth);
+    transform-origin: 50% 0%;
+    transform: rotateX(-90deg);
+}
+
+.box>div:after {
+    bottom: 0;
+    top: auto;
+    transform-origin: 0% 100%;
+    transform: rotateX(90deg);
+}
+
+/* 
+
+DOOR DRAWING, based on box foundation
+
+*/
+
+/* variables for the step to position and color it */
+.step {
+    --front-back-color: rgb(152, 152, 152);
+    --side-color: rgb(126, 126, 126);
+    --top-bot-color: rgb(101, 101, 101);
+    --zdepth: 15vmin;
+    /* position the step */
+    bottom: 0;
+    width: 35vmin;
+    height: 5vmin;
+    left: 17.5vmin;
+    transform: translateZ(-2vmin);
+}
+
+.door {
+    width: 30vmin;
+    height: 55vmin;
+    background: rgba(0, 0, 255, 0.174);
+    left: 20vmin;
+    bottom: 5vmin;
+}
+
+.door-frame {
+    --front-back-color: rgb(88, 53, 32);
+    --side-color: rgb(73, 43, 23);
+    --top-bot-color: rgb(43, 24, 13);
+    --zdepth: 5vmin;
+    transform: translateZ(-1vmin);
+}
+
+.door-top {
+    width: 100%;
+    height: 3vmin;
+}
+
+.left-side {
+    width: 3vmin;
+    height: 100%;
+}
+
+.right-side {
+    right: 0;
+    width: 3vmin;
+    height: 100%;
+}
+
+.main-door {
+    --front-back-color: rgb(139, 95, 68);
+    --side-color: rgb(161, 113, 81);
+    --top-bot-color: rgb(108, 72, 51);
+    --zdepth: 3vmin;
+    top: 3vmin;
+    left: 3vmin;
+    /* width: 90%; */
+    /* height: 94%; */
+    width: calc(100% - 5vmin);
+    height: calc(100% - 3vmin);
+    transform: translateZ(-1vmin);
+    /* Manipulate transform rotate when user clicks on door */
+    transform-origin: 0 50%;
+}
+
+.door-handle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 5vmin;
+    height: 8vmin;
+    border-radius: 35%;
+    right: 2.5vmin;
+    top: 40%;
+    background: rgb(156, 158, 158);
+    border: 1px solid black;
+}
+
+.door-lock {
+    width: 1vmin;
+    height: 2vmin;
+    border-radius: 35%;
+    top: 1.5vmin;
+    background: rgb(42, 42, 42);
+}
+
+/* .door-handle:hover {
+    cursor:pointer;
+} */
+
+.door-knob {
+    --front-back-color: rgb(51, 51, 51);
+    --side-color: rgb(37, 37, 37);
+    --top-bot-color: rgb(28, 28, 28);
+    --zdepth: 1vmin;
+    width: 1.5vmin;
+    height: 1.5vmin;
+    bottom: 1.25vmin;
+}
+
+.door-knob-handle {
+    --front-back-color: rgba(78, 78, 78, 0.83);
+    --side-color: rgba(63, 63, 63, 0.653);
+    --top-bot-color: rgba(57, 57, 57, 0.688);
+    --zdepth: 1vmin;
+    --width: 7vmin;
+    --height: 2.5vmin;
+    width: var(--width);
+    height: var(--height);
+    /* resolving to hard coding positions */
+    right: -.5vmin;
+    top: -.5vmin;
+    transform-origin: 82% 50%;
+    transform: rotateZ(0deg);
+}
+
+/* hover anim shake */
+.door-knob-handle:not(.no-hover):hover {
+    cursor: pointer;
+    animation-duration: 0.2s;
+    animation-name: door-knob-shake;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+
+/* img behind door */
+.door > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    display: none;
+}
+
+
+/* 
+
+ANIMATIONS
+
+*/
+.door-knob-handle-open {
+    animation-duration: 2s;
+    animation-name: door-knob-open;
+    animation-iteration-count: 2;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+}
+
+.door-frame-open {
+    animation-duration: 3s;
+    animation-name: door-open;
+    animation-iteration-count: 2;
+    animation-timing-function: ease;
+    animation-delay: 2s;
+    animation-direction: alternate;
+}
+
+.background-gradient {
+    animation-duration: 5s;
+    animation-name: gradient;
+    animation-iteration-count: 2;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+}
+
+@keyframes door-knob-open {
+    0% {
+        transform: rotateZ(-0deg);
+    }
+
+    60% {
+        transform: rotateZ(-90deg);
+    }
+
+    100% {
+        transform: rotateZ(-90deg);
+    }
+}
+
+@keyframes door-knob-shake {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-5deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes door-open {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    60% {
+        transform: rotateY(-90deg);
+    }
+
+    100% {
+        transform: rotateY(-90deg);
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 100% 0%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
