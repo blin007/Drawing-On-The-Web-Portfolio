@@ -1,0 +1,64 @@
+/*
+Drawing on the Web
+2 horizontally-aligned canvas elements
+*/
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+body {
+    margin: 0;
+    height: 80vh;
+    background-color: #fff3d1;
+    font-family: 'Major Mono Display', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1 {
+    font-size: 64px;
+}
+
+#link {
+    transition: all 0.8s ease-in-out;
+}
+
+#link:hover {
+    box-shadow: inset 800px 0px 0px 0px #27434e;
+    color: #ffffff;
+}
+
+p {
+    font-size: 24px;
+}
+
+.sub{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+img {
+    margin-top: 5px;
+}
+
+#frame {
+    width: 1260px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-evenly;
+}
+
+canvas {
+    width: 600px;
+    height: 400px;
+    background-color: #131313;
+}
