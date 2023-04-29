@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles2.css">
+    <title>Gameboy</title>
+</head>
+
+<body>
+    <div class="gameboy-container">
+        <!-- GAMEBOY 1 -->
+        <div class="gameboy gb1">
+            <div class="switch">
+                <label class="power">
+                    <input type="checkbox" onclick="play()" id="power-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="top-line">
+                <div class="edge-lines">
+                    <span class="power-arrow">&#9664 <span>OFF ON</span> &#9654</span>
+                </div>
+            </div>
+            <div class="screen-border">
+                <div class="battery">
+                    <div class="led"></div>
+                    <span>BATTERY</span>
+                </div>
+                <div class="screen" id="gb1-screen">
+                    <video id="gb1-start">
+                        <source src="static/images/gameboy-startup.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="buttons-move">
+                    <div class="cross direction-up"></div>
+                    <div class="cross direction-left"></div>
+                    <div class="cross center"><div></div></div>
+                    <div class="cross direction-right"></div>
+                    <div class="cross direction-down"></div>
+                </div>
+                <div class="buttons-play">
+                    <div class="b"></div>
+                    <div class="a"></div>
+                </div>
+            </div>
+            
+            <div class="buttons-setting">
+                <div class="select"></div>
+                <div class="start"></div>
+            </div>
+        </div>
+        <!-- GAMEBOY 2 -->
+        <div class="gameboy gb2">
+            <div class="screen-border">
+                <div class="battery">
+                    <div class="led"></div>
+                    <span>POWER</span>
+                </div>
+                <div class="screen">
+                    <video id="gb2-start">
+                        <source src="static/images/gb2-pokemon.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="buttons-move">
+                    <div class="cross direction-up"></div>
+                    <div class="cross direction-left"></div>
+                    <div class="cross center">
+                        <div></div>
+                    </div>
+                    <div class="cross direction-right"></div>
+                    <div class="cross direction-down"></div>
+                </div>
+                <div class="buttons-play">
+                    <div class="b"></div>
+                    <div class="a" id="gb2-a" onclick="toggleGB2Video()"></div>
+                </div>
+            </div>
+            <div class="buttons-setting">
+                <div class="select"></div>
+                <div class="start"></div>
+            </div>
+        </div>
+    </div>
+    <script defer src="static/js/script2.js"></script>
+</body>
+
+</html>

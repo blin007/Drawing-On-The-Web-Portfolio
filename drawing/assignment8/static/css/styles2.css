@@ -1,0 +1,971 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gameboy-back-color: rgb(216, 89, 89);
+    --gameboy-border: rgb(21, 21, 21);
+    --gameboy-screen-border: rgb(66, 29, 29);
+    --gameboy-screen: rgb(82, 157, 82);
+    --gameboy-cross-circle: rgb(164, 38, 38);
+    --gameboy-cross: rgb(118, 28, 28);
+    --gameboy-buttons: rgb(70, 3, 3);
+    --gameboy-setting-buttons: rgb(98, 98, 98);
+    --text-color: rgb(224, 224, 224);
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(178, 113, 190, 0.215);
+    overflow-x: hidden;
+}
+
+/* remove styles from a tags */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.gameboy-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameboy {
+    background-color: var(--gameboy-back-color);
+    /* 
+        width: 420px;
+        height: 650px;
+    */
+    --gameboy-width: 420px;
+    --gameboy-height: 650px;
+    width: var(--gameboy-width);
+    height: var(--gameboy-height);
+    margin: auto;
+    border: 6px solid var(--gameboy-border);
+}
+
+/* GAMEBOY 1 */
+.gb1 {
+    border-radius: 30px 30px 80px 30px;
+    /* shadow on the left and right */
+    /* https: //cssgenerator.org/box-shadow-css-generator.html */
+    box-shadow: -12px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 14px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+    -webkit-box-shadow: -12px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 14px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+    -moz-box-shadow: -12px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 14px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+    position: relative;
+}
+
+.top-line {
+    --topline-height: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: var(--topline-height);
+    border-bottom: 5px solid var(--gameboy-border);
+    border-radius: 30px 30px 0px 0px;
+    
+}
+
+.gb1 > .top-line {
+    /* top shadow */
+    box-shadow: 0px 8px 1px -1px rgba(79, 15, 15, 0.71) inset;
+    -webkit-box-shadow: 0px 8px 1px -1px rgba(79, 15, 15, 0.71) inset;
+    -moz-box-shadow: 0px 8px 1px -1px rgba(79, 15, 15, 0.71) inset;
+}
+
+.edge-lines{
+    width: 75%;
+    height: 100%;
+    border-left: 5px solid var(--gameboy-border);
+    border-right: 5px solid var(--gameboy-border);
+}
+
+.gb1 .edge-lines > span {
+    font-size: 12px;
+    text-shadow: 3px 2px 3px rgb(24, 24, 24);
+    color: #ffffff;
+    margin-left: 5px;
+    padding: 5px;
+    opacity: 0.5;
+}
+
+
+.power-arrow  > span{
+    position: relative;
+    top: 2px;
+}
+
+.power-arrow:hover{
+    cursor:default;
+}
+
+.switch{
+    position:absolute;
+    top: -15px;
+    left: 22%;
+}
+
+.switch:hover {
+    cursor:pointer;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.power{
+    position: relative;
+    display: inline-block;
+    --power-width: 60px;
+    --power-height: 10px;
+    width: var(--power-width);
+    height: var(--power-height);
+    
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    --slider-width: 25px;
+    --slider-height: 5px;
+    width: var(--slider-width);
+    height: var(--slider-height);
+    background-color: grey;
+    border: 5px solid var(--gameboy-border);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0;
+    transition: transform .4s ease-in-out;
+}
+
+input:checked+.slider:before {
+    --slider-translate: 35px;
+    transform: translateX(var(--slider-translate));
+}
+
+/* SCREEN */
+.screen-border {
+    --screen-border-width: 300px;
+    --scren-border-height: 250px;
+    width: var(--screen-border-width);
+    height: var(--scren-border-height);
+    margin: 20px auto;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.gb1 > .screen-border {
+    border-radius: 20px 20px 50px 20px;
+    background-color: var(--gameboy-screen-border);
+    border: 4px solid var(--gameboy-border);
+    position: relative;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 0px 0px 20px 0px;
+    background-color: var(--gameboy-screen);
+    border: 4px solid var(--gameboy-border);
+    overflow: hidden;
+    box-shadow: -10px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 10px 1px -1px rgba(31, 92, 22, 0.71) inset;;
+    -webkit-box-shadow: -10px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 10px 1px -1px rgba(31, 92, 22, 0.71) inset;;
+    -moz-box-shadow: -10px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 10px 1px -1px rgba(31, 92, 22, 0.71) inset;;
+    z-index: 0;
+}
+
+.screen > video {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+}
+
+/* screen glare */
+.gb1 .screen:before {
+    content:"";
+    position: absolute;
+    background-color: rgba(169, 201, 170, 0.427);
+    --screen-glare1-width: 40px;
+    width: var(--screen-glare1-width);
+    height: 200%;
+    /* opacity: 0.8; */
+    /* border-radius: 20px; */
+    transform: rotate(30deg);
+    top: -40%;
+    /* top: 15%; */
+    /* left: 5%; */
+}
+
+.gb1 .screen:after {
+    content: "";
+    position: absolute;
+    background-color: rgba(169, 201, 170, 0.427);
+    --screen-glare2-width: 60px;
+    width: var(--screen-glare2-width);
+    height: 200%;
+    /* border-radius: 20px; */
+    top: -48%;
+    transform: rotate(30deg);
+    left: 70%;
+}
+
+.gb1 .screen-border:before {
+    content: "";
+    --screen-border-line-width: 80px;
+    --screen-border-line-height: 3px;
+    width: var(--screen-border-line-width);
+    height: var(--screen-border-line-height);
+    background-color: rgb(90, 17, 17);
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.gb1 .screen-border:after {
+    /* margin-left: -20px; */
+    --screen-border-text: 6px;
+    content: "DOT MATRIX WITH STEREO SOUND";
+    color: var(--text-color);
+    /* text-align: center; */
+    font-size: var(--screen-border-text);
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.battery {
+    margin-left: -25px;
+    margin-right: 3px;
+}
+
+.battery .led{
+    border-radius: 50%;
+    --led-width: 10px;
+    --led-height: 10px;
+    width: var(--led-width);
+    height: var(--led-height);
+    margin: auto;
+    background-color: red;
+    border: 2px solid black;
+}
+
+.battery > span {
+    --battery-text: 5px;
+    font-size: var(--battery-text);
+    color: var(--text-color);
+}
+
+.controls {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.gb1 .buttons-move, 
+.gb1 .buttons-play {
+    background: linear-gradient(var(--gameboy-back-color), var(--gameboy-cross-circle));
+    border: 5px solid var(--gameboy-border);
+}
+
+.gb1 .buttons-move {
+    --move-buttons-width: 120px;
+    --move-buttons-height: 120px;
+    --move-buttons-padding: 20px;
+    --move-buttons-margin: 40px;
+    width: var(--move-buttons-width);
+    height: var(--move-buttons-height);
+    padding: var(--move-buttons-padding);
+    border-radius: 50%; 
+    margin: var(--move-buttons-margin);
+    position: relative;
+    
+}
+
+.gb1 .buttons-play {
+    --play-buttons-width: 150px;
+    --play-buttons-height: 70px;
+    --play-buttons-padding: 10px;
+    height: var(--play-buttons-height);
+    width: var(--play-buttons-width);
+    padding: var(--play-buttons-padding);
+    border-radius: 50px;
+    display:flex; 
+    align-items: center;
+    justify-content: space-between;
+    margin: 65px 30px 0 0;
+    transform: rotate(-40deg);
+}
+
+/* DIRECTIONAL BUTTONS */
+.cross {
+    width: 25%;
+    height: 25%;
+    /* border: 8px solid var(--gameboy-border); */
+    background-color: var(--gameboy-cross);
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.368);
+    /* z-index: 2; */
+}
+
+.cross:hover {
+    cursor:pointer;
+}
+
+.direction-left {
+    left: 25%;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    border-top: 2px solid rgb(225, 141, 141);
+    /* background-size: 200% auto;
+    transition: background-position 0.5s ease-in-out;
+    background-image: linear-gradient(to right, var(--gameboy-cross) 0%, #4a1113 51%, #6e1310 100%); */
+    margin-left: 2px;
+}
+
+.direction-up {
+    top: 25%;
+    border-top: 2px solid rgb(225, 141, 141);
+    /* background-size: 200% auto;
+    transition: background-position 0.5s ease-in-out;
+    background-image: linear-gradient(to right, var(--gameboy-cross) 0%, #4a1113 51%, var(--gameboy-cross) 100%); */
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.direction-right {
+    left: 75%;
+    /* border-top-color: rgb(141, 26, 26); */
+    border-top: 2px solid rgb(225, 141, 141);
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+}
+
+.center {
+    border: none;
+    /* border-radius: 25%; */
+    z-index: 0;
+}
+
+.center > div {
+    /* border: 1px solid var(--gameboy-cross); */
+    background: conic-gradient(transparent 0 30%, rgba(255, 255, 255, 0.3) 40% 60%, transparent 70%);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.direction-down {
+    top: 75%;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+.direction-up:active,
+.direction-right:active,
+.direction-left:active,
+.direction-down:active {
+    border-color: var(--gameboy-cross);
+    box-shadow: none;
+}
+
+/* PLAY BUTTONS */
+.gb1 .a, 
+.gb1 .b {
+    width: 42%;
+    height: 125%;
+    /* background-color: var(--gameboy-buttons); */
+    background-size: 200% auto;
+    transition: background-position 0.5s ease-in-out;
+    background-image: linear-gradient(to right, #e74f4a 0%, #b31217 51%, #e52d27 100%);
+    box-shadow: -2px 3px 5px rgba(0, 0, 0, 1), -1px 2px 5px rgba(200, 197, 197, 0.5) inset;
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid var(--gameboy-border);
+}
+
+.gb1 .a:hover,
+.gb1 .b:hover {
+    background-position: right center;
+    cursor:pointer;
+}
+
+.gb1 .a:active,
+.gb1 .b:active {
+    box-shadow: none;
+}
+
+.gb1 .a:after{
+    content: "A";
+}
+
+.gb1 .b:after{
+    content: "B";
+}
+
+.gb1 .a:after,
+.gb1 .b:after {
+    position: absolute;
+    bottom: -90%;
+    left: 35%;
+}
+
+/* SELECT AND START BUTTONS */
+.buttons-setting {
+    --button-setting-width: 200px;
+    --button-setting-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: var(--button-setting-width);
+    height: var(--button-setting-height);
+    margin: -20px auto;
+}
+
+.select,
+.start {
+    width: 25%;
+    height: 25%;
+    /* background-color: grey; */
+    background-image: linear-gradient(to right, #304352 0%, #d7d2cc 51%, #304352 100%);
+    transition: background-position 0.5s ease-in-out;
+    background-size: 200% auto;
+    border: 4px solid var(--gameboy-border);
+    border-radius: 20px;
+    transform: rotate(-40deg);
+    box-shadow:
+        -8px -2px 5px rgba(0, 0, 0, 0.4) inset,
+        5px 7px 5px rgba(255, 255, 255, 0.5) inset,
+        0px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.select:hover,
+.start:hover {
+    background-position: right center;
+    cursor: pointer;
+}
+
+.select:after,
+.start:after {
+    font-size: 6px;
+    position: absolute;
+    bottom: -130%;
+    left: 5%;
+}
+
+.select:after {
+    content: "select";
+}
+
+.start:after {
+    content: "start";
+}
+
+.select:active,
+.start:active {
+    box-shadow: none;
+}
+
+
+/* GAMEBOY 2 */
+.gb2 {
+    --gameboy-back-color: rgb(106, 176, 242);
+    background-color: var(--gameboy-back-color);
+    border-radius: 30px 30px 80px 80px;
+    box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+    -webkit-box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+    -moz-box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+}
+
+.gb2 >.screen-border {
+    --gameboy-screen-border: rgb(16, 16, 47);
+    border-radius: 20px;
+    margin-top: 40px;
+    background-color: var(--gameboy-screen-border);
+    border: 4px solid var(--gameboy-border);
+}
+
+.gb2 .screen:before {
+    content: "";
+    position: absolute;
+    background-color: white;
+    --screen-glare-width1: 15px;
+    --screen-glare-height1: 50px;
+    width: var(--screen-glare-width1);
+    height: var(--screen-glare-height1);
+    opacity: 0.8;
+    border-radius: 20px;
+    top: 15%;
+    left: 5%;
+}
+
+.gb2 .screen:after{
+    content: "";
+    position: absolute;
+    background-color: white;
+    --screen-glare-width2: 15px;
+    --screen-glare-height2: 25px;
+    width: var(--screen-glare-width2);
+    height: var(--screen-glare-height2);
+    opacity: 0.8;
+    border-radius: 20px;
+    top: 48%;
+    left: 5%;
+}
+
+.gb2 .buttons-move {
+    --buttons-move-width: 120px;
+    --buttons-move-height: 120px;
+    --buttons-move-padding: 20px;
+    --buttons-move-margin: 40px;
+    width: var(--buttons-move-width);
+    height: var(--buttons-move-height);
+    padding: var(--buttons-move-padding);
+    border-radius: 50%;
+    margin: var(--buttons-move-margin);
+    position: relative;
+
+}
+
+/* DIRECTIONAL BUTTONS */
+.gb2 .cross {
+    --gameboy-cross: rgb(204, 204, 39);
+}
+
+.gb2 .direction-left {
+    border-top: 2px solid rgb(233, 233, 45);
+}
+
+.gb2 .direction-left:before {
+    content: "◀";
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 6%;
+    left: 15%;
+}
+
+.gb2 .direction-up {
+    border-top: 2px solid rgb(233, 233, 45);
+}
+
+.gb2 .direction-up:before {
+    content: "▲";
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 6%;
+    left: 22%;
+}
+
+.gb2 .direction-right {
+    border-top: 2px solid rgb(233, 233, 45);
+}
+
+.gb2 .direction-right:before {
+    content: "▶";
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 6%;
+    right: 22%;
+}
+
+.gb2 .direction-down:before {
+    content: "▼";
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    bottom: 10%;
+    left: 22%;
+}
+
+/* PLAY BUTTONS */
+.gb2 .buttons-play {
+    --buttons-play-width: 150px;
+    --buttons-play-height: 70px;
+    height: var(--buttons-play-height);
+    width: var(--buttons-play-width);
+    padding: 10px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 65px 30px 0 0;
+    transform: rotate(-40deg);
+}
+
+.gb2 .a,
+.gb2 .b {
+    width: 48%;
+    height: 110%;
+    background-size: 200% auto;
+    transition: background-position 0.5s ease-in-out;
+    background-image: linear-gradient(to right, #4ae761 0%, #12b32a 51%, #27e54d 100%);
+    box-shadow: -2px 3px 5px rgba(0, 0, 0, 1), -1px 2px 5px rgba(200, 197, 197, 0.5) inset;
+    border-radius: 50%;
+    position: relative;
+    border: 4px solid var(--gameboy-border);
+}
+
+.gb2 .b {
+    background-image: linear-gradient(to right, #e7744a 0%, #b33512 51%, #e55627 100%);
+}
+
+.gb2 .a:hover,
+.gb2 .b:hover {
+    background-position: right center;
+    cursor: pointer;
+}
+
+.gb2 .a:active,
+.gb2 .b:active {
+    box-shadow: none;
+}
+
+.gb2 .a:after {
+    content: "A";
+}
+
+.gb2 .b:after {
+    content: "B";
+}
+
+.gb2 .a:after,
+.gb2 .b:after {
+    position: absolute;
+    transform: rotate(40deg) translate(-50%, -50%);
+    top: 50%;
+    left: 49%;
+    right: 20%;
+    bottom: 35%;
+}
+
+/* SELECT AND START BUTTONS */
+.gb2 .buttons-setting {
+    gap: 30px;
+}
+
+.gb2 .select,
+.gb2 .start {
+    background-image: linear-gradient(to right, #303b45 0%, #3c3c3b 51%, #0a0a0a 100%);
+    transform: rotate(0deg);
+}
+
+.gb2 .select:after {
+    content: "SELECT";
+    left: 10%;
+    bottom: -150%;
+}
+
+.gb2 .start:after {
+    content: "START";
+    left: 15%;
+    bottom: -150%;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .gameboy-container {
+        overflow: scroll;
+        flex-direction: column;
+    }
+
+    .gameboy {
+        --gameboy-width: 260px;
+        --gameboy-height: 325px;
+    }
+
+    /* GAMEBOY 1 */
+    .gb1 {
+        border-radius: 15px 15px 40px 15px;
+        box-shadow: -6px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 7px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+        -webkit-box-shadow: -6px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 7px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+        -moz-box-shadow: -6px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 7px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
+    }
+
+    .top-line {
+        --topline-height: 15px;
+        border-bottom: 5px solid var(--gameboy-border);
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    .gb1>.top-line {
+        box-shadow: 0px 4px 1px -1px rgba(79, 15, 15, 0.71) inset;
+        -webkit-box-shadow: 0px 4px 1px -1px rgba(79, 15, 15, 0.71) inset;
+        -moz-box-shadow: 0px 4px 1px -1px rgba(79, 15, 15, 0.71) inset;
+    }
+
+    .edge-lines {
+        border-left: 5px solid var(--gameboy-border);
+        border-right: 5px solid var(--gameboy-border);
+    }
+
+    .gb1 .edge-lines>span {
+        font-size: 6px;
+        text-shadow: 2px 1px 2px rgb(24, 24, 24);
+        margin-left: 2px;
+        padding: 2px;
+    }
+
+    .power-arrow {
+        position: relative;
+        top: -11px;
+    }
+
+    .switch {
+        top: -12px;
+        left: 19%;
+    }
+
+    .power {
+        --power-width: 30px;
+        --power-height: 5px;
+    }
+
+    .slider:before {
+        --slider-width: 12px;
+        --slider-height: 2px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    input:checked+.slider:before {
+        --slider-translate: 20px;
+    }
+
+    .screen-border {
+        --screen-border-width: 150px;
+        --scren-border-height: 125px;
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    .gb1>.screen-border {
+        border-radius: 10px 10px 25px 10px;
+        border: 4px solid var(--gameboy-border);
+    }
+
+    .screen {
+        border-radius: 0px 0px 10px 0px;
+        box-shadow: -5px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 5px 1px -1px rgba(31, 92, 22, 0.71) inset;
+        -webkit-box-shadow: -5px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 5px 1px -1px rgba(31, 92, 22, 0.71) inset;
+        -moz-box-shadow: -5px 1px 1px -1px rgba(31, 92, 22, 0.71) inset, 0px 5px 1px -1px rgba(31, 92, 22, 0.71) inset;
+    }
+
+    .gb1 .screen:before {
+        --screen-glare1-width: 20px;
+    }
+
+    .gb1 .screen:after {
+        --screen-glare2-width: 30px;
+    }
+
+    .gb1 .screen-border:before {
+        --screen-border-line-width: 40px;
+        --screen-border-line-height: 2px;
+    }
+
+    .gb1 .screen-border:after {
+        --screen-border-text: 3px;
+    }
+
+    .battery {
+        margin-left: -12px;
+        margin-right: 1px;
+    }
+
+    .battery .led {
+        --led-width: 5px;
+        --led-height: 5px;
+        border: 1px solid black;
+    }
+
+    .battery>span {
+        --battery-text: 2px;
+    }
+
+    .gb1 .buttons-move,
+    .gb1 .buttons-play {
+        border: 5px solid var(--gameboy-border);
+    }
+
+    .gb1 .buttons-move {
+        --move-buttons-width: 60px;
+        --move-buttons-height: 60px;
+        --move-buttons-padding: 10px;
+        --move-buttons-margin: 20px;
+    }
+
+    .gb1 .buttons-play {
+        --play-buttons-width: 75px;
+        --play-buttons-height: 37px;
+        --play-buttons-padding: 5px;
+        border-radius: 25px;
+        margin: 32px 15px 0 0;
+    }
+
+    .cross {
+        box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.368);
+    }
+
+    .direction-left {
+        border-radius: 2px 0 0 2px;
+        border-top: 1px solid rgb(225, 141, 141);
+        margin-left: 1px;
+    }
+
+    .direction-up {
+        border-top: 1px solid rgb(225, 141, 141);
+        border-bottom: none;
+        border-radius: 2px 2px 0 0;
+    }
+
+    .direction-right {
+        border-top: 1px solid rgb(225, 141, 141);
+        border-left: none;
+        border-radius: 0 2px 2px 0;
+    }
+
+    .direction-down {
+        border-top: none;
+        border-radius: 0 0 2px 2px;
+    }
+
+    .gb1 .a,
+    .gb1 .b {
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, 1), -1px 1px 3px rgba(200, 197, 197, 0.5) inset;
+        border: 1px solid var(--gameboy-border);
+    }
+
+    .gb1 .a:after,
+    .gb1 .b:after {
+        font-size: 8px;
+        bottom: 3px;
+    }
+
+    .buttons-setting {
+        --button-setting-width: 100px;
+        --button-setting-height: 40px;
+        gap: 5px;
+        margin: -10px auto;
+    }
+
+    .select,
+    .start {
+        border: 2px solid var(--gameboy-border);
+        border-radius: 10px;
+        box-shadow:
+            -4px -2px 2px rgba(0, 0, 0, 0.4) inset,
+            2px 3px 2px rgba(255, 255, 255, 0.5) inset,
+            0px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .select:after,
+    .start:after {
+        font-size: 3px;
+    }
+
+    .gb2 {
+        border-radius: 15px 15px 40px 40px;
+        box-shadow: -6px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 6px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+        -webkit-box-shadow: -6px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 6px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+        -moz-box-shadow: -6px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 6px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+    }
+
+    .gb2>.screen-border {
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .gb2 .screen:before {
+        --screen-glare-width1: 7px;
+        --screen-glare-height1: 25px;
+        border-radius: 10px;
+    }
+
+    .gb2 .screen:after {
+        --screen-glare-width2: 7px;
+        --screen-glare-height2: 12px;
+        border-radius: 10px;
+    }
+
+    .gb2 .buttons-move {
+        --buttons-move-width: 80px;
+        --buttons-move-height: 80px;
+        --buttons-move-padding: 12px;
+        --buttons-move-margin: 22px;
+    }
+
+    .gb2 .direction-left:before {
+        top: -4px;
+        left: 2px;
+    }
+
+    .gb2 .direction-up:before {
+        top: -4px;
+        left: 2px;
+    }
+
+    .gb2 .direction-right:before {
+        top: -4px;
+        right: 2px;
+    }
+
+    .gb2 .direction-down:before {
+        bottom: -1px;
+        left: 3px;
+    }
+
+    .gb2 .buttons-play {
+        --buttons-play-width: 80px;
+        --buttons-play-height: 35px;
+        padding: 5px;
+        border-radius: 25px;
+        gap: 10px;
+        margin: 32px 15px 0 0;
+    }
+
+    .gb2 .a,
+    .gb2 .b {
+        box-shadow: -1px 1px 2px rgba(0, 0, 0, 1), -1px 1px 2px rgba(200, 197, 197, 0.5) inset;
+        border: 2px solid var(--gameboy-border);
+    }
+
+    .gb2 .a:after,
+    .gb2 .b:after {
+        font-size: 10px;
+    }
+
+    .gb2 .buttons-setting {
+        gap: 15px;
+    }
+}

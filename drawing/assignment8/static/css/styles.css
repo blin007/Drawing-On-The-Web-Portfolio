@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Does not work in FIREFOX */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(178, 113, 190, 0.215);
+    overflow: hidden;
+}
+
+/* remove styles from a tags */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.grid-wrapper {
+    display: grid;
+    place-items: center;
+    grid-template-columns: minmax(200px, 400px) minmax(200px, 400px) minmax(200px, 400px);
+    /* grid-template-columns: 48px auto; */
+    transition: grid-template-columns 1s ease;
+    height: 100vh;
+}
+
+/* .grid-wrapper:hover {
+    cursor:pointer;
+    grid-template-columns: minmax(200px, 600px) minmax(200px, 600px) minmax(200px, 600px);
+} */
+
+.grid-wrapper:has(.left:hover){
+    grid-template-columns: minmax(200px, 2000px) minmax(100px, 150px) minmax(100px, 150px);
+}
+
+.grid-wrapper:has(.middle:hover) {
+    grid-template-columns: minmax(100px, 150px) minmax(200px, 2000px) minmax(100px, 150px);
+}
+
+.grid-wrapper:has(.right:hover) {
+    grid-template-columns: minmax(100px, 150px)  minmax(100px, 150px) minmax(200px, 2000px);
+}
+
+.item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.item .svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.svg {
+    transition: box-shadow 0.8s ease-in-out, border 0.8s ease-in-out; 
+    border-radius: 4rem;
+    
+}
+
+.svg:hover {
+    border: 0.5rem solid black;
+    box-shadow: inset 800px 0px 0px 0px #446e53;
+    cursor:pointer;
+}
+
+.svg:hover > svg {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.svg:hover > h1 {
+    visibility: visible;
+    opacity: 1;
+}
+
+.svg > svg {
+    transition: visibility 0.8s ease-in-out,
+        opacity 0.5s ease-in-out;
+}
+
+.svg > h1 {
+    text-align: center;
+    position: absolute;
+    font-size: 3.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #4ae83f;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.8s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.left {
+    background-color: rgb(244, 173, 173);
+}
+
+.middle {
+    background-color:rgb(166, 182, 239);
+}
+
+.right {
+    background-color: rgb(230, 230, 170);
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 600px){
+    .grid-wrapper {
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(100px, 400px) minmax(100px, 400px) minmax(100px, 400px);
+        /* grid-template-rows: 1fr 1fr 1fr; */
+        /* grid-template-columns: 48px auto; */
+        transition: grid-template-rows 1s;
+        height: 100vh;
+    }
+
+    .grid-wrapper:has(.left:hover) {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(200px, 2000px) minmax(100px, 200px) minmax(100px, 200px);
+    }
+
+    .grid-wrapper:has(.middle:hover) {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(100px, 200px) minmax(200px, 2000px) minmax(100px, 200px);
+    }
+
+    .grid-wrapper:has(.right:hover) {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(100px, 200px) minmax(100px, 200px) minmax(200px, 2000px);
+    }
+}

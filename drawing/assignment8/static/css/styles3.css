@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --border-color: black;
+    --body-color: red;
+    --body-shadow-color1: rgba(161, 20, 20, 0.75);
+    --body-shadow-color2: rgba(225, 86, 86, 0.75);
+    --face-shadow-color: rgba(66, 89, 120, 0.75);
+    --face-screen: #a1d7eb;
+    --face-screen-glare: rgb(237, 237, 237);
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* background-color: white; */
+}
+
+/* remove styles from a tags */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#canvas {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/* AMONG US */
+.among-us-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.among-body {
+    /* width: 300px, height: 350px */
+    --width: 155px;
+    --height: 175px;
+    width:var(--width);
+    height:var(--height);
+    position: absolute;
+}
+
+.head {
+    /* --headW: 180px;
+        --headH: 65px; */
+    --headW: 90px;
+    --headH: 33px;
+    width: var(--headW);
+    height: var(--headH);
+    background-color: var(--body-color);
+    border: 8px solid var(--border-color);
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 18px 1px 10px 0px var(--body-shadow-color2) inset;
+    -webkit-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 18px 1px 10px 0px var(--body-shadow-color2) inset;
+    -moz-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 18px 1px 10px 0px var(--body-shadow-color2) inset;
+    border-bottom: none;
+    margin: auto;
+}
+
+.body {
+    /* --bodyW: 180px;
+        --bodyH: 200px; */
+    --bodyW: 90px;
+    --bodyH: 100px;
+    width:var(--bodyW);
+    height:var(--bodyH);
+    margin: auto;
+    background-color: var(--body-color);
+    border: 8px solid var(--border-color);
+    border-top: none;
+    border-bottom:none;
+    box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 10px 1px 10px 0px var(--body-shadow-color2) inset;
+    -webkit-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 10px 1px 10px 0px var(--body-shadow-color2) inset;
+    -moz-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset, 10px 1px 10px 0px var(--body-shadow-color2) inset;
+    z-index: 1;
+}
+
+.face {
+    /* --faceW: 130px;
+        --faceH: 80px; */
+    --faceW:75px;
+    --faceH:48px;
+    width:var(--faceW);
+    height:var(--faceH);
+    position:absolute;
+    left: 10%;
+    background-color: var(--face-screen);
+    border: 8px solid var(--border-color);
+    border-radius: 35px 30px 40px 30px;
+    z-index: 3;
+    box-shadow: -20px -20px 20px 0px var(--face-shadow-color) inset;
+    -webkit-box-shadow: -20px -20px 20px 0px var(--face-shadow-color) inset;
+    -moz-box-shadow: -20px -20px 20px 0px var(--face-shadow-color) inset;
+}
+
+.face:before {
+    content:"";
+    position:absolute;
+    left: 8%;
+    top: 12%;
+    /* --glareW: 50px;
+        --glareH: 20px; */
+    --glareW: 25px;
+    --glareH: 10px;
+    width:var(--glareW);
+    height:var(--glareH);
+    background-color: var(--face-screen-glare);
+    border-radius: 9999px;
+}
+
+.body:after {
+    content:"";
+    /* --backpackW: 48px;
+        --backpackH: 160px; */
+    --backpackW:24px;
+    --backpackH: 80px;
+    position: absolute;
+    top: 20%;
+    right: 1%;
+    width:var(--backpackW);
+    height:var(--backpackH);
+    border: 8px solid var(--border-color);
+    border-left: none;
+    background-color: var(--body-color);
+    border-radius: 0 40px 30px 0;
+    box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset;
+    -webkit-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset;
+    -moz-box-shadow: -16px 0px 20px 0px var(--body-shadow-color1) inset;
+}
+
+.legs {
+    /* --legsH: 60px;
+        --legsW: 180px; */
+    --legsH: 30px;
+    --legsW: 90px;
+    width: var(--legsW);
+    height: var(--legsH);
+    margin: auto;
+    display: flex; 
+    justify-content: space-between;
+}
+
+.leg {
+    /* --legH: 60px;
+        --legW: 80px; */
+    --legH: 30px;
+    --legW: 40px;
+    width: var(--legW);
+    height: var(--legH);
+    background-color: var(--body-color);
+    border: 8px solid var(--border-color);
+    border-radius: 0 0 12px 12px;
+    border-top: none;
+    box-shadow: -6px 0px 20px 0px var(--body-shadow-color1) inset, 8px 1px 10px 0px var(--body-shadow-color2) inset;
+    -webkit-box-shadow: -6px 0px 20px 0px var(--body-shadow-color1) inset, 8px 1px 10px 0px var(--body-shadow-color2) inset;
+    -moz-box-shadow: -6px 0px 20px 0px var(--body-shadow-color1) inset, 8px 1px 10px 0px var(--body-shadow-color2) inset;
+}
+
+.legs:after{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 6px;
+    border-radius: 9px;
+    right: 44%;
+    background-color: black;
+}
+
+.red-body {
+    left: 20%;
+    top: 10%;
+    z-index: 0;
+}
+
+.blue {
+    --body-color: blue;
+    --body-shadow-color1: rgba(22, 26, 138, 0.75);
+    --body-shadow-color2: rgba(22, 22, 210, 0.822);
+}
+
+.blue-body {
+    left: 20%;
+    top: 20%;
+    z-index: 1;
+}
+
+.yellow {
+ --body-color: yellow;
+ --body-shadow-color1: rgba(167, 167, 31, 0.864);
+ --body-shadow-color2: rgba(246, 246, 136, 0.877);
+}
+
+.yellow-body {
+    top: 0%;
+    left: 20%;
+    z-index: 2
+}
+
+.gray {
+    --body-color: rgb(58, 58, 58);
+    --body-shadow-color1: rgba(31, 31, 31, 0.829);
+    --body-shadow-color2: rgba(79, 79, 79, 0.841);
+}
+
+.gray-body {
+    top: 20%;
+    left: 20%;
+    z-index: 3;
+}
+
+.pink {
+    --body-color: rgb(255, 65, 97);
+    --body-shadow-color1: rgba(210, 15, 47, 0.844);
+    --body-shadow-color2: rgba(249, 106, 130, 0.884);
+}
+
+.pink-body {
+    top: 10%;
+    left: 10%;
+    z-index:4;
+}
+
+.green {
+    --body-color: rgb(25, 85, 25);
+    --body-shadow-color1: rgba(5, 44, 5, 0.916);
+    --body-shadow-color2: rgba(33, 122, 33, 0.767);
+}
+
+.green-body {
+    top: 10%;
+    left: 15%;
+    z-index: 5;
+}
+
+.brown {
+    --body-color: #67340a;
+    --body-shadow-color1: #682012;
+    --body-shadow-color2: #67340a;
+}
+
+.brown-body {
+    top: 5%;
+    left: 8%;
+    z-index: 6;
+}
+
+.purple {
+    --body-color: #7328B9;
+    --body-shadow-color1: #3D0D71;
+    --body-shadow-color2: #7328B9;
+}
+
+.purple-body {
+    top: 10%;
+    left: 15%;
+    z-index: 7;
+}
+
+.orange {
+    --body-color: #FC7C00;
+    --body-shadow-color1:#C83D04;
+    --body-shadow-color2:#FC7C00;
+}
+
+.orange-body {
+    top: 10%;
+    left: 10%;
+    z-index: 8;
+}
+
+.lime {
+    --body-color: #00EF00;
+    --body-shadow-color1: #03A104;
+    --body-shadow-color2: #00EF00;
+}
+
+.lime-body {
+    top: 10%;
+    left: 25%;
+    z-index: 9;
+}
+
+.white {
+    --body-color: #C5D6E6;
+    --body-shadow-color1: #758DBD;
+    --body-shadow-color2: #C5D6E6;
+}
+
+.white-body {
+    top: 25%;
+    left: 15%;
+    z-index: 10;
+}
+
+.sky-blue {
+    --body-color: #01F1CE;
+    --body-shadow-color1: #019CBB;
+    --body-shadow-color2: #01F1CE;
+}
+
+.sky-blue-body {
+    top: 10%;
+    left: 22%;
+    z-index: 11;
+}
+
+@media only screen and (max-width: 600px) {
+    .among-body {
+        --width: 77px;
+        --height: 87px;
+    }
+
+    .head {
+        --headW: 45px;
+        --headH: 16px;
+        border: 4px solid var(--border-color);
+        border-bottom: none;
+        box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 9px 1px 10px 0px var(--body-shadow-color2) inset;
+        -webkit-box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 9px 1px 10px 0px var(--body-shadow-color2) inset;
+        -moz-box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 9px 1px 10px 0px var(--body-shadow-color2) inset;
+    }
+
+    .body {
+        --bodyW: 45px;
+        --bodyH: 50px;
+        border: 4px solid var(--border-color);
+        border-bottom: none;
+        border-top: none;
+        box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 5px 1px 5px 0px var(--body-shadow-color2) inset;
+        -webkit-box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 5px 1px 5px 0px var(--body-shadow-color2) inset;
+        -moz-box-shadow: -8px 0px 10px 0px var(--body-shadow-color1) inset, 5px 1px 5px 0px var(--body-shadow-color2) inset;
+    }
+
+    .face {
+        --faceW: 37px;
+        --faceH: 24px;
+        border: 4px solid var(--border-color);
+        border-radius: 17px 15px 20px 15px;
+        box-shadow: -10px -10px 10px 0px var(--face-shadow-color) inset;
+        -webkit-box-shadow: -10px -10px 10px 0px var(--face-shadow-color) inset;
+        -moz-box-shadow: -10px -10px 10px 0px var(--face-shadow-color) inset;
+    }
+
+    .face:before {
+        --glareW: 12px;
+        --glareH: 5px;
+    }
+
+    .body:after {
+        --backpackW: 12px;
+        --backpackH: 40px;
+        border: 4px solid var(--border-color);
+        border-radius: 0 20px 15px 0;
+        right: 0%;
+        box-shadow: -16px 0px 10px 0px var(--body-shadow-color1) inset;
+        -webkit-box-shadow: -16px 0px 10px 0px var(--body-shadow-color1) inset;
+        -moz-box-shadow: -16px 0px 10px 0px var(--body-shadow-color1) inset;
+    }
+
+    .legs {
+        --legsH: 15px;
+        --legsW: 45px;
+    }
+
+    .leg {
+        --legH: 15px;
+        --legW: 20px;
+        border: 4px solid var(--border-color);
+        border-radius: 0 0 6px 6px;
+        border-top: none;
+        box-shadow: -6px 0px 10px 0px var(--body-shadow-color1) inset, 8px 1px 5px 0px var(--body-shadow-color2) inset;
+        -webkit-box-shadow: -6px 0px 10px 0px var(--body-shadow-color1) inset, 8px 1px 5px 0px var(--body-shadow-color2) inset;
+        -moz-box-shadow: -6px 0px 10px 0px var(--body-shadow-color1) inset, 8px 1px 5px 0px var(--body-shadow-color2) inset;
+    }
+
+    .legs:after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 3px;
+        border-radius: 4px;
+        right: 44%;
+        background-color: black;
+    }
+}
