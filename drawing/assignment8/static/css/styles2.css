@@ -43,10 +43,6 @@ a {
 
 .gameboy {
     background-color: var(--gameboy-back-color);
-    /* 
-        width: 420px;
-        height: 650px;
-    */
     --gameboy-width: 420px;
     --gameboy-height: 650px;
     width: var(--gameboy-width);
@@ -64,6 +60,24 @@ a {
     -webkit-box-shadow: -12px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 14px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
     -moz-box-shadow: -12px 0px 1px -1px rgba(115, 29, 29, 0.71) inset, 14px 1px 1px -1px rgba(217, 116, 116, 0.71) inset;
     position: relative;
+
+    /* display: none; */
+    transform: translateX(-200%);
+    animation: fromLeft 1.1s 0s 1 ease-in-out forwards;
+}
+
+@keyframes fromLeft {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    85% {
+        transform: translateX(10%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .top-line {
@@ -347,18 +361,12 @@ input:checked+.slider:before {
     border-right: none;
     border-radius: 5px 0 0 5px;
     border-top: 2px solid rgb(225, 141, 141);
-    /* background-size: 200% auto;
-    transition: background-position 0.5s ease-in-out;
-    background-image: linear-gradient(to right, var(--gameboy-cross) 0%, #4a1113 51%, #6e1310 100%); */
     margin-left: 2px;
 }
 
 .direction-up {
     top: 25%;
     border-top: 2px solid rgb(225, 141, 141);
-    /* background-size: 200% auto;
-    transition: background-position 0.5s ease-in-out;
-    background-image: linear-gradient(to right, var(--gameboy-cross) 0%, #4a1113 51%, var(--gameboy-cross) 100%); */
     border-bottom: none;
     border-radius: 5px 5px 0 0;
 }
@@ -507,6 +515,23 @@ input:checked+.slider:before {
     box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
     -webkit-box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
     -moz-box-shadow: -12px 0px 1px -1px rgba(17, 55, 91, 0.71) inset, 14px 1px 1px -1px rgba(134, 194, 251, 0.71) inset;
+
+    transform: translateY(200%);
+    animation: fromBot 1.5s 0.2s 1 ease-in-out forwards;
+}
+
+@keyframes fromBot {
+    0% {
+        transform: translateY(200%);
+    }
+
+    80% {
+        transform: translateY(-10%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
 }
 
 .gb2 >.screen-border {

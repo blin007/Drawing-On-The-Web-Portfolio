@@ -1,6 +1,8 @@
 const canvas = document.getElementById("canvas")
 const context = canvas.getContext("2d");
 
+const transition = document.querySelector(".transition");
+
 const pxScale = window.devicePixelRatio;
 canvas.width = window.innerWidth * pxScale;
 canvas.height = window.innerHeight * pxScale;
@@ -23,3 +25,22 @@ function drawStars(){
 }
 
 window.addEventListener("load", drawStars);
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth * pxScale;
+    canvas.height = window.innerHeight * pxScale;
+    const width = canvas.width;
+    const height = canvas.height;
+    context.scale(pxScale, pxScale);
+    drawStars()
+})
+
+
+const audioEject = document.getElementById("eject");
+setTimeout(() => {
+    audioEject.play()
+}, 1500)
+
+setTimeout(() => {
+    transition.style.display = "none"
+}, 6100)
+

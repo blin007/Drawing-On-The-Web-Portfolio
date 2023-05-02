@@ -51,8 +51,6 @@ let amongArr = []
 amongUss.forEach((parent ) => {
     const child = parent.querySelector(".among-body");
     const childCoords = child.getBoundingClientRect();
-    // console.log(child)
-    // console.log(childCoords.top, childCoords.right, childCoords.bottom, childCoords.left);
     const ele = new Element(child, childCoords.top, childCoords.left)
     amongArr.push(ele);
 })

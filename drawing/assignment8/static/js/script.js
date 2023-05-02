@@ -1,47 +1,48 @@
-// /** @type {HTMLCanvasElement} */
-// const canvas1 = document.querySelector(".canvas1");
-// const context1 = canvas1.getContext("2d");
-// const canvas2 = document.querySelector(".canvas2");
-// const context2 = canvas2.getContext("2d");
-// const canvas3 = document.querySelector(".canvas3");
-// const context3 = canvas3.getContext("2d");
+const transition3 = document.querySelector(".transition-3");
+const transition1Block = document.querySelector(".transition-1");
+const transition1 = document.querySelectorAll(".loading-bar");
+const transition2 = document.querySelector(".transition-2");
+const audio3 = document.getElementById("drawing3-audio");
 
-// //Pixel density
-// const pxScale = window.devicePixelRatio;
-// canvas1.width *= pxScale;
-// canvas1.height *= pxScale;
-// canvas2.width *= pxScale;
-// canvas2.height *= pxScale;
-// canvas3.width *= pxScale;
-// canvas3.height *= pxScale;
-// const width1 = canvas1.width;
-// const height1 = canvas1.height;
-// const width2 = canvas2.width;
-// const height2 = canvas2.height;
-// const width3 = canvas3.width;
-// const height3 = canvas3.height;
-// context1.scale(pxScale, pxScale);
-// context2.scale(pxScale, pxScale)
-// context3.scale(pxScale, pxScale);
+function navToDraw3(){
+    transition3.style.display = "flex"
+    transition3.classList.add("go-to-draw-3")
+    setTimeout(() => {
+        audio3.play()
+    }, 2000)
+    setTimeout(() => {
+        window.location.href = 'drawing3.html';
+        setTimeout(() => {
+            transition3.classList.remove("go-to-draw-3");
+        },1000)
+    }, 6000)
+}
 
-// const items = document.querySelectorAll(".item");
-// //draw something on each canvas
-// items.forEach((item) => {
-//     item.addEventListener("click", function() {
-//         const canvasName = item.getElementsByTagName('canvas')[0].className
-//         let canvas;
-//         let context;
-//         if(canvasName === "canvas1"){
-//             canvas = canvas1;
-//             context = context1;
-//         } else if (canvasName==="canvas2"){
-//             canvas = canvas2;
-//             context = context2;
-//         }else {
-//             canvas = canvas3;
-//             context = context3;
-//         }
+function navToDraw1(){
+    transition1Block.style.display = "flex";
+    transition1Block.classList.add("transition-1-anim");
+    transition1.forEach(bar => {
+        bar.classList.add("anim-bars")
+    })
+    setTimeout(() => {
+        
+        window.location.href = 'drawing1.html';
+        setTimeout(() => {
+            transition1Block.classList.remove("transition-1-anim");
+        },1000)
+        
+    }, 4000)
 
-//         console.log(canvas);
-//     })
-// })
+}
+
+function navToDraw2(){
+    transition2.style.display = "flex"
+    transition2.classList.add("transition-2-anim");
+    setTimeout(() => {
+        window.location.href = 'drawing2.html'
+        setTimeout(() => {
+            transition2.classList.remove("transition-2-anim");
+        },1000)
+    }, 3000)
+
+}

@@ -1,5 +1,23 @@
-# Outline
+# Final Project
 
-\*Note do not open in firefox. This project uses the :has selector which does not work in firefox. Open in Chrome or Safari
+This project consists of 3 drawings and an interface
 
-I've been struggling to come up with an idea for this final project. Eventually, I decided that I wanted to do something concerning video games since I've always loved playing them. The drawing that I've submitted as the prototype represents an overview of what I plan to incorporate for this project (well kind of). I'm actually thinking of using this prototype as the interface for the 3 drawings. The prototype is made up of a grid with 3 columns (in mobile view its 3 rows), each grid has a unique svg in it pertaining to something game related. Hovering over a column will expand it to fill the browser. The svg represents the theme of the drawing. For example, in the left column, there are four buttons so for the drawing that will be in the left column, I plan on doing something with game controller buttons where the user can interact with the buttons. In the middle column, there is a svg of a game boy, and I plan on creating a css drawing of a game console that the user can interact with (if I can figure out how to do that). The 3rd drawing is the one I'm still unsure about, I have a joystick in the column but I don't know if I will create anything related to a joystick yet. On an important note, the prototype uses the css :has selector to animate the grid so that it expands and fills the rest of the screen. Unfortunately, firefox does not support it (actually it does but you have to modify something in the firefox config to get it to work), so I recommend using another browser like Chrome.
+## Interface
+
+- Three grid columns
+- Hovering over their svg icons reveals a button
+- Clicking on the button navigates to their corresponding drawing
+- Note that in Firefox the grid fits the screen since the CSS has selector does not work on firefox browsers by default
+- In Chrome (and hopefully other browsers) hovering over a grid column causes it to expand
+
+## Drawing 1: Playstation
+
+The first drawing consists of a old-school television and playstation 1, both of which were created entirely in CSS (Except the playstation logo which is an svg). The window behind the television was made using canvas, each star in the back was given a random velocity to simulate a parallax effect. Clicking on the playstation power button will switch the video element of the tv to the ps1 startup.
+
+## Drawing 2: Gameboys
+
+The second drawing consists of two gameboys, again both were entirely created in CSS. The buttons on the gameboys can be clicked, however only one button on each does something. For the left (red) gameboy, clicking on the top power switch will turn it on and play the gameboy startup video. For the right (blue) gameboy, clicking on the "A" button will play a pokemon clip. The CSS before and after selectors were my best friend for this drawing. I also utilized box shadows that add an extra layer of depth to the devices.
+
+## Drawing 3: Among Us (Everyone gets ejected)
+
+The third drawing consists of 12 among us characters (all created in CSS), bouncing around in space, which is supposed to simulate the ejection scene. The space background was created using HTML canvas. This drawing is probably the most complex in terms of javascript. Each character is represented by a class and is assigned a random velocityX, velocityY, and rotational velocity value. Their position in the viewport is changed based on these velocity values. Because the characters are not part of the canvas, I got their position by using the JS getBoundingClientRect function. The signs of the velocity values are switched if the character hits the edge of the screen. In addition, hovering over a character will slow down its velocity values.

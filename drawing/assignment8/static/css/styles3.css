@@ -21,14 +21,115 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* background-color: white; */
 }
 
-/* remove styles from a tags */
-a {
-    text-decoration: none;
-    color: inherit;
+.transition {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: remove 2s 0s 1 ease-in-out forwards;
 }
+
+.loading-circle {
+    --loading-width: 400px;
+    --loading-height: 400px;
+    width: var(--loading-width);
+    height: var(--loading-height);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.227);
+    overflow: hidden;
+    position: relative;
+    animation: loading-spinner 2s infinite;
+}
+
+.loading-part {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    transform-origin: 0% 100%;
+}
+
+.loading-part:nth-child(even) {
+    border-right: calc(var(--loading-width) / 2) solid #FF8134;
+}
+
+.loading-part:nth-child(odd) {
+    border-right: calc(var(--loading-width) / 2) solid #FFD54D;
+}
+
+.loading-part:first-child {
+    transform: rotate(0deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(2) {
+    transform: rotate(30deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(3) {
+    transform: rotate(60deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(4) {
+    transform: rotate(90deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(5) {
+    transform: rotate(120deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(6) {
+    transform: rotate(150deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(7) {
+    transform: rotate(180deg) skewY(-60deg);
+}
+
+.loading-part:nth-child(8) {
+    transform: rotate(210deg) skewY(-60deg);
+}
+.loading-part:nth-child(9) {
+    transform: rotate(240deg) skewY(-60deg);
+}
+.loading-part:nth-child(10) {
+    transform: rotate(270deg) skewY(-60deg);
+}
+.loading-part:nth-child(11) {
+    transform: rotate(300deg);
+}
+.loading-part:nth-child(12) {
+    transform: rotate(330deg) skewY(-60deg);
+}
+
+@keyframes loading-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes remove {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+/* Actual drawing */
 
 #canvas {
     position: fixed;
@@ -404,5 +505,10 @@ a {
         border-radius: 4px;
         right: 44%;
         background-color: black;
+    }
+
+    .loading-circle {
+        --loading-width: 200px;
+        --loading-height: 200px;
     }
 }

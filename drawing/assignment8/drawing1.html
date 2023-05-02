@@ -6,11 +6,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles1.css">
-    <title>Space</title>
+    <title>Room</title>
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
+    <div class="content">
+        <div class="content-container">
+            <div class="window-border">
+                <div class="window">
+                    <canvas id="canvas-window"></canvas>
+                </div>
+            </div>
+            <div class="tv-antenna"></div>
+            <div class="tv">
+                <div class="tv-container">
+                    <div class="tv-inset">
+                        <div class="tv-screen-border">
+                            <div class="tv-screen">
+                                <video id="tv-video" muted autoplay loop>
+                                    <source src="static/images/TV-static.mp4" type="video/mp4">
+                                </video>
+                                <video id="playstation-startup" loop>
+                                    <source src="static/images/PS1-startup.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <div class="tv-controls">
+                            <div class="tv-buttons">
+                                <div class="button-container">
+                                    <div class="top-button"></div>
+                                </div>
+                                <div class="button-container">
+                                    <div class="bot-button"></div>
+                                </div>
+                                <div class="tv-speaker">
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                    <div class="tv-speaker-line"></div>
+                                </div>
+                            </div>
+     
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table"></div>
+            <div class="playstation">
+                <div class="section1">
+                    <div class="power-button" onclick="toggleVideo()">
+                        <h3>POWER</h3>
+                    </div>
+                </div>
+                <div class="section2">
+                    <div class="disc">
+                        <h3>SONY</h3>
+                        <svg class="icon icon-playstation-logo">
+                            <use xlink:href="static/images/icons.svg#icon-playstation-logo"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="section3"></div>
+            </div>
+            <div class="floor"></div>
+        </div>
+    </div>
+
+    <div class="transition">
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+    </div>
+    
     <script defer src="static/js/script1.js"></script>
 </body>
 

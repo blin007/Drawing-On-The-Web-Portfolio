@@ -5,35 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/styles.css">
-    <title>Space</title>
+    <title>Interface</title>
 </head>
 <body>
+    <audio id="drawing3-audio">
+        <source src="static/images/among-us-start.mp3" type="audio/mp3">
+    </audio>
+
     <div class="grid-wrapper">
-        <div class="item left">
-            <a class="svg" href="drawing1.html">
-                <svg class="icon icon-shapes" id="icon-shapes">
+        <div class="item left" id="left">
+            <a class="svg" onclick="navToDraw1()">
+                <svg class="icon icon-shapes" id="icon-shapes" >
                     <use xlink:href="static/images/icons.svg#icon-Shapes"></use>
                 </svg>
                 <h1>PLAY</h1>
             </a>
         </div>
-        <div class="item middle">
-            <a class="svg" href="drawing2.html">
-                <svg class="icon icon-gameboy" id="icon-gameboy">
+        <div class="item middle" id="middle">
+            <a class="svg" onclick="navToDraw2()" >
+                <svg class="icon icon-gameboy" id="icon-gameboy" >
                     <use xlink:href="static/images/icons.svg#icon-Gameboy"></use>
                 </svg>
                 <h1>PLAY</h1>
             </a>
         </div>
-        <div class="item right">
-            <a class="svg" href="drawing3.html">
-                <svg class="icon icon-joystick" id="icon-joystick">
+        <div class="item right" id="right">
+            <a class="svg" onclick="navToDraw3()">
+                <svg class="icon icon-joystick" id="icon-joystick" >
                     <use xlink:href="static/images/icons.svg#icon-Joystick"></use>
                 </svg>
                 <h1>PLAY</h1>
             </a>
         </div>
     </div>
-    <!-- <script defer src="static/js/script.js"></script> -->
+
+    <div class="transition-1">
+        <div class="loading-bar bar-1"></div>
+        <div class="loading-bar bar-2"></div>
+        <div class="loading-bar bar-3"></div>
+        <div class="loading-bar bar-4"></div>
+        <div class="loading-bar bar-5"></div>
+        <div class="loading-bar bar-6"></div>
+    </div>
+
+    <div class="transition-2"></div>
+
+    <div class="transition-3">
+        <div class="loading-circle">
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+            <div class="loading-part"></div>
+        </div>
+    </div>
+    <script defer src="static/js/script.js"></script>
 </body>
 </html>

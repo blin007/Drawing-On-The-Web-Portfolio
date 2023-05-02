@@ -8,15 +8,506 @@
 
 body {
     font-family: 'Press Start 2P', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(178, 113, 190, 0.215);
     overflow: hidden;
 }
 
-/* remove styles from a tags */
-a {
-    text-decoration: none;
-    color: inherit;
+:root {
+    --floor-height: 30px;
+    --offset-table-floor: 60px;
+    --table-width: 600px;
+    --table-height: 60px;
+    --table-leg-width: 25px;
+    --tv-width: 550px;
+    --tv-height: 400px;
+    --tv-inset-offset: 20px;
+    --tv-screen-border-width: 400px;
+    --tv-button-size: 40px;
+    --tv-button-container: 80px;
+    --tv-antenna-width: 80px;
+    --tv-antenna-height: 30px;
+    --tv-antenna-tail-width: 10px;
+    --tv-antenna-tail-height: 200px;
+    --window-width: 500px;
+    --window-height: 400px;
+    --playstation-width: 200px;
+    --playstation-height: 110px;
+    --playstation-sony-font: 10px;
+    --playstation-logo-size: 30px;
+    --playstation-power-font: 4px;
+}
+
+/* Make fill tv */
+#canvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: rgb(53, 53, 53);
+    z-index: 5;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    background-color: #e4e7e9;
+        background-image:
+        repeating-linear-gradient(120deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(60deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+        linear-gradient(60deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1)),
+        linear-gradient(120deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1));
+    background-size: 70px 120px;
+    z-index: -5;
+}
+
+.content-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.floor {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    height: var(--floor-height);
+    width: 100%;
+    background-color: rgb(75, 59, 33);
+    background-image: url(../images/wood-pattern.png);
+    border-top: 2px solid rgb(75, 59, 33);
+    z-index: 1;
+}
+
+.table {
+    position: absolute;
+    bottom: calc(var(--floor-height) + var(--offset-table-floor));
+    width: var(--table-width);
+    height: var(--table-height);
+    background-color: rgb(65, 63, 61);
+    border: 2px solid rgb(119, 119, 119);
+    left: calc(50% - (var(--table-width)/2));
+    z-index: 1;
+}
+
+/* table legs */
+.table:before,
+.table:after {
+    content: "";
+    position: absolute;
+    width: var(--table-leg-width);
+    height: var(--offset-table-floor);
+    background-color: rgb(65, 63, 61);
+    border: 2px solid rgb(119, 119, 119);
+    border-top: none;
+    bottom: -112%;
+}
+
+.table:after {
+    right: 0%;
+}
+
+/* Playstation */
+.playstation {
+    position: absolute;
+    bottom: calc(var(--floor-height));
+    width: var(--playstation-width);
+    height: var(--playstation-height);
+    left: calc(50% - var(--playstation-width));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.section1,
+.section3 {
+    border-top: 2px solid rgb(82, 82, 82);
+    border-bottom: 2px solid rgb(82, 82, 82);
+    width: 30%;
+    height: 100%;
+    background-color: #B2B9C3;
+    border-radius: 5px;
+}
+
+.section1 {
+    border-left: 2px solid rgb(82, 82, 82);
+    position: relative;
+}
+
+.section3 {
+    border-right: 2px solid rgb(82, 82, 82);
+}
+
+.section2 {
+    width: 40%;
+    height: 95%;
+    /* border: 1px solid black; */
+    background-color: #B2B9C3;
+    position: relative;
+    box-shadow: -1px -1px 5px 0px rgba(49, 49, 51, 0.75), 1px -1px 5px 0px rgba(49, 49, 51, 0.75);
+    -webkit-box-shadow: -1px -1px 5px 0px rgba(49, 49, 51, 0.75), 1px -1px 5px 0px rgba(49, 49, 51, 0.75);
+    -moz-box-shadow: -1px -1px 5px 0px rgba(49, 49, 51, 0.75), 1px -1px 5px 0px rgba(49, 49, 51, 0.75);
+}
+
+.power-button {
+    border-radius: 50%;
+    width: var(--playstation-logo-size);
+    height: var(--playstation-logo-size);
+    box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    -webkit-box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    -moz-box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    border: 1px solid black;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.power-button > h3 {
+    font-size: var(--playstation-power-font);
+    color: green;
+}
+
+.power-button:hover {
+    box-shadow: none;
+}
+
+.disc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 120%;
+    height: 95%;
+    border: 1px solid black;
+    background-color: #B2B9C3;
+    box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    -webkit-box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    -moz-box-shadow: 1px 2px 5px 0px rgba(49, 49, 51, 0.75), -2px -3px 5px 0px rgba(49, 49, 51, 0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column; 
+    /* z-index: 4; */
+}
+
+.disc > h3 {
+    font-size: var(--playstation-sony-font);
+}
+
+.disc > svg {
+    width: var(--playstation-logo-size);
+    height: var(--playstation-logo-size);
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+}
+
+#playstation-startup {
+    display: none;
+    
+}
+
+/* Window */
+.window-border {
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: var(--window-width);
+    height: var(--window-height);
+    background-color: rgb(75, 59, 33);
+    background-image: url(../images/wood-pattern.png);
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.window {
+    width: 95%;
+    height: 95%;
+}
+
+#canvas-window {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(28, 28, 28);
+}
+
+/* brown set */
+.tv {
+    position: absolute;
+    bottom: calc(var(--floor-height) + var(--offset-table-floor) + var(--table-height));
+    width: var(--tv-width);
+    height: var(--tv-height);
+    background-color: rgb(75, 59, 33);
+    background-image: url(../images/wood-pattern-rotated.png);
+    border-radius: 15px;
+    border: 3px solid rgb(61, 43, 16);
+    left: calc(50% - (var(--tv-width)/2));
+}
+
+.tv-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tv-inset {
+    width: calc(var(--tv-width) - var(--tv-inset-offset));
+    height: calc(var(--tv-height) - var(--tv-inset-offset));
+    padding: 10px;
+    border: 3px solid rgb(29, 23, 12);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tv-screen-border {
+    width: var(--tv-screen-border-width);
+    height: 100%;
+    background-color: rgb(176, 161, 117);
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 5px 0px rgba(131, 119, 86, 0.75) inset, -4px -4px 5px 0px rgba(131, 119, 86, 0.75) inset;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(125, 114, 83, 0.75) inset, -4px -4px 5px 0px rgba(131, 119, 86, 0.75) inset;
+    -moz-box-shadow: 5px 5px 5px 0px rgba(144, 131, 94, 0.75) inset, -4px -4px 5px 0px rgba(131, 119, 86, 0.75) inset;
+}
+
+.tv-controls {
+    width: calc(var(--tv-width) - var(--tv-inset-offset) - var(--tv-screen-border-width));
+    height: 100%;
+    
+    background-color: rgb(61, 43, 16);
+    border-radius: 0 15px 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tv-screen {
+    position: relative;
+    width: 95%;
+    height: 90%;
+}
+
+/* display to none when button is clicked */
+.tv-screen > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3;
+    border-radius: 15px;
+}
+
+.tv-buttons {
+    width: 90%;
+    height: 98%;
+    /* padding: 5px; */
+    background-color: rgb(61, 43, 16);
+    border: 3px solid black;
+    border-radius: 0 15px 15px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button-container {
+    margin-top: 10px;
+    width: 80%;
+    height: var(--tv-button-container);
+    border-radius: 15px;
+    background-color: rgb(90, 90, 90);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-button,
+.bot-button {
+    border-radius: 50%;
+    width: var(--tv-button-size);
+    height: var(--tv-button-size);
+    background-color: rgb(28, 28, 28);
+    border: 3px solid black;
+}
+
+.tv-speaker {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tv-speaker-line {
+    width: 100%;
+    height: 3%;
+    background-color: black;
+    border-radius: 9999px;
+}
+
+.tv-antenna {
+    position: absolute;
+    width: var(--tv-antenna-width);
+    height: var(--tv-antenna-height);
+    background-color: rgb(61, 43, 16);
+    bottom: calc(var(--floor-height) + var(--offset-table-floor) + var(--tv-height) + var(--table-height));
+    left: calc(50% - var(--tv-antenna-width));
+    border-radius: 9999px 9999px 0 0;
+}
+
+.tv-antenna:before,
+.tv-antenna:after {
+    content: "";
+    position: absolute;
+    width: var(--tv-antenna-tail-width);
+    height: var(--tv-antenna-tail-height);
+    background-color: rgb(65, 61, 54);
+}
+
+.tv-antenna:before {
+    bottom: 5px;
+    left: -50px;
+    transform: rotate(-35deg);
+}
+
+.tv-antenna:after{
+    bottom: 12px;
+    right: -40px;
+    transform: rotate(30deg);
+    /* height: 150px; */
+}
+
+.transition {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: rgb(255, 0, 0); */
+    background-color: #e4e7e9;
+    background-image:
+        repeating-linear-gradient(120deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(60deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) 1px, transparent 1px, transparent 60px),
+        linear-gradient(60deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1)),
+        linear-gradient(120deg, rgba(0, 0, 0, .1) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, .1) 75%, rgba(0, 0, 0, .1));
+    background-size: 70px 120px;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: remove 2.5s 3s 1 forwards;
+    /* animation: remove 2s 2s 1 ease-in-out forwards; */
+}
+
+.loading-bar {
+    /* transform: translateX(-200%); */
+    /* border: 5px solid rgb(53, 78, 166); */
+    width: 100%;
+    height: calc(100% / 6);
+}
+
+.loading-bar:first-child {
+    animation: remove 1s 0s 1 ease-in-out forwards;
+    background-color: rgb(244, 173, 173);
+}
+
+.loading-bar:nth-child(2) {
+    animation: remove 1s 0.5s 1 ease-in-out forwards;
+    background-color: rgb(166, 182, 239);
+}
+
+.loading-bar:nth-child(3) {
+    animation: remove 1s 1s 1 ease-in-out forwards;
+    background-color: rgb(230, 230, 170);
+}
+
+.loading-bar:nth-child(4) {
+    animation: remove 1s 1.5s 1 ease-in-out forwards;
+    background-color: rgb(244, 173, 173);
+}
+
+.loading-bar:nth-child(5) {
+    animation: remove 1s 2s 1 ease-in-out forwards;
+    background-color: rgb(166, 182, 239);
+}
+
+.loading-bar:nth-child(6) {
+    animation: remove 1s 2.5s 1 ease-in-out forwards;
+    background-color: rgb(230, 230, 170);
+}
+
+@keyframes remove {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    :root {
+    --floor-height: 15px;
+    --offset-table-floor: 30px;
+    --table-width: 300px;
+    --table-height: 30px;
+    --table-leg-width: 12px;
+    --tv-width: 275px;
+    --tv-height: 200px;
+    --tv-inset-offset: 10px;
+    --tv-screen-border-width: 200px;
+    --tv-button-size: 20px;
+    --tv-button-container: 40px;
+    --tv-antenna-width: 40px;
+    --tv-antenna-height: 15px;
+    --tv-antenna-tail-width: 5px;
+    --tv-antenna-tail-height: 100px;
+    --window-width: 250px;
+    --window-height: 200px;
+    --playstation-width: 100px;
+    --playstation-height: 65px;
+    --playstation-sony-font: 5px;
+    --playstation-logo-size: 15px;
+    --playstation-power-font: 2px;
+    }
+
+    /* table legs */
+    .table:before,
+    .table:after {
+        bottom: -128%;
+    }
+
+    .tv-antenna:before {
+        bottom: 5px;
+        left: -20px;
+        transform: rotate(-35deg);
+    }
+
+    .tv-antenna:after {
+        bottom: 6px;
+        right: -20px;
+        transform: rotate(30deg);
+    }
 }
